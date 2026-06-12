@@ -1,0 +1,38 @@
+header{
+	background: #8E2DE2;
+	background: -webkit-linear-gradient(to right, #4A00E0, #8E2DE2);
+	background: linear-gradient(to right, #4A00E0, #8E2DE2);
+}
+
+/*estilos para la tabla*/
+table th {
+	background-color: #fff !important;
+	color: white;
+}
+table>tbody>tr>td {
+	vertical-align: middle !important;
+}
+
+
+.black-background {background-color:#f01111;}
+.white {color:#ffffff;}
+
+
+
+.orange-background {background-color:#ed8e2f;}
+.white {color:#ffffff;}
+
+.blue-background {background-color:#340b8c;}
+.white {color:#ffffff;}
+
+.aqua-background {background-color:#0cafc4;}
+.white {color:#ffffff;}
+
+.green-background {background-color:#23a808;}
+.white {color:#ffffff;}
+
+
+/*para alinear los botones y cuadro de busqueda*/
+.btn-group, .btn-group-vertical {
+	position: absolute !important;
+}
