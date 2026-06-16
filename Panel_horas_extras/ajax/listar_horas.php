@@ -45,6 +45,7 @@
                                             <th><font size ="2", color ="#2d2d2d">HORA INICIAL HORAS EXTRAS</th>
                                             <th><font size ="2", color ="#2d2d2d">HORA FINAL HORAS EXTRAS</th>
                                             <th><font size ="2", color ="#2d2d2d">TOTAL HORAS EXTRAS</th>
+                                            <th><font size ="2", color ="#2d2d2d">TIEMPO DE ALMUERZO HORAS EXTRAS</th>
                                             <th><font size ="2", color ="#2d2d2d">HORA INICIAL RECARGO</th>
                                             <th><font size ="2", color ="#2d2d2d">HORA FINAL RECARGO</th>
                                             <th><font size ="2", color ="#2d2d2d">TOTAL HORAS RECARGO</th>
@@ -73,6 +74,7 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
+                                            <th>Start date</th>
                                             <th>Start date</th>
                                             <th>Start date</th>
                                             <th>Start date</th>

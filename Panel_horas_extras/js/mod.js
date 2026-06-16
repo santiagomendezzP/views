@@ -14,11 +14,12 @@ var button = $(event.relatedTarget) // Button that triggered the modal
     $('#hora_inicio_heM').val(str[6])
     $('#hora_fin_heM').val(str[7])
     $('#horas_extrasM').val(str[8])
-    $('#hora_inicio_recM').val(str[9])
-    $('#hora_fin_recM').val(str[10])
-    $('#horas_recargoM').val(str[11])
-    $('#activiM').val(str[12])
-    $('#cont').val(str[13])
+    $('#almuerzo_he').val(str[9])
+    $('#hora_inicio_recM').val(str[10])
+    $('#hora_fin_recM').val(str[11])
+    $('#horas_recargoM').val(str[12])
+    $('#activiM').val(str[13])
+    $('#cont').val(str[14])
    
   })
   $('#ModalElim').on('show.bs.modal', function (event) {

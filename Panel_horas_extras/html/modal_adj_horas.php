@@ -73,6 +73,14 @@
               <label for="recipient-name" class="col-form-label">TOTAL HORAS EXTRAS:</label>
               <input type="text"  class="form-control" id="horas_extras" name="horas_extras"  readonly>
             </div>
+            <div class="form-group" id="div_almuerzo_he" style="display: none;">
+              <label for="almuerzo_he" class="col-form-label">TIEMPO EN MINUTOS DE ALMUERZO HORAS EXTRAS:</label>
+              <select name="almuerzo_he" id="almuerzo_he" class="form-control calc">
+                <option value="0">0 minutos</option>
+                <option value="30">30 minutos</option>
+                <option value="60">60 minutos</option>
+              </select>
+            </div>
             <div class="form-group">
               <label for="recipient-name" class="col-form-label">CONCEPTO HORAS:</label>
               <select class="form-control" id="concepto_horas_extras" name="concepto_horas_extras">
@@ -254,6 +262,7 @@
     $horaInicio_he=$_REQUEST['hora_inicio_he'];
     $horaFin_he=$_REQUEST['hora_fin_he'];
     $horaEx=$_REQUEST['horas_extras'];
+    $almuerzo_he=$_REQUEST['almuerzo_he'];
     $horaInicio_rec=$_REQUEST['hora_inicio_rec'];
     $horaFin_rec=$_REQUEST['hora_fin_rec'];
     $horaRec=$_REQUEST['horas_recargo'];
@@ -261,7 +270,7 @@
     $concepto = $_REQUEST['concepto_horas_extras'] != ''?$_REQUEST['concepto_horas_extras']:$_REQUEST['concepto_horas_recargo'];
 
     $con=$_SESSION['contador'];
-    $arr = "$fecha||$dia||$horaE||$almuerzo||$horaS||$horaDia||$horaInicio_he||$horaFin_he||$horaEx||$horaInicio_rec||$horaFin_rec||$horaRec||$actividad||$con||$concepto";
+    $arr = "$fecha||$dia||$horaE||$almuerzo||$horaS||$horaDia||$horaInicio_he||$horaFin_he||$horaEx||$almuerzo_he||$horaInicio_rec||$horaFin_rec||$horaRec||$actividad||$con||$concepto";
     $editar="
     <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#ModalModifi'
       data-fecha='$fecha' 
@@ -269,8 +278,9 @@
       data-hora_extrada='$horaE'
       data-hora_salida='$horaS'
       data-horas_dia='$horaDia'
-      data-hora_extra='$horaEx' 
-      data-hora_recargo='$horaRec' 
+      data-hora_extra='$horaEx'
+      data-almuerzo_he='$almuerzo_he'
+      data-hora_recargo='$horaRec'
       data-actividad='$actividad'
       data-cont='$con'
       data-array='$arr'>
