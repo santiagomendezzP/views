@@ -73,8 +73,13 @@ function clasificarYFiltrarConcepto() {
   var ini = parseInt(inicio.replace(':', ''), 10);
   var end = parseInt(fin.replace(':', ''),   10);
 
-  var esDiurno   = function(t) { return t >= 600 && t < 1900; };
-  var esNocturno = function(t) { return t < 600  || t >= 1900; };
+  var esDiurno = function(t) {
+    return t >= 600 && t <= 1900;
+};
+
+var esNocturno = function(t) {
+    return t < 600 || t > 1900;
+};
 
   var esMixto = (esDiurno(ini) && esNocturno(end)) || (esNocturno(ini) && esDiurno(end));
 
