@@ -480,6 +480,11 @@ $.ajax({
     }
 
 });
+  $$("#hora_inicio_he, #hora_fin_he").change(function(){
+
+    $("button[name='agregar']").prop('disabled', false);
+
+});
 </script>
  
  
