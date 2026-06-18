@@ -2,16 +2,16 @@
 $consecutivo =$_POST['consecutivo'];
 $año = $_POST['año'];
 
-$desde =  $_POST['desde'];
-$hasta = $_POST['hasta']; 
+$mes = $_POST['mes'];
 
-$fecha_inicio = "$año-$desde-01"; 
-$fecha_fin = "$año-$hasta-31"; 
+$fecha_inicio = "$año-$mes-01";
+$fecha_fin = "$año-$mes-31";
 
 $campos = "*";
 $tables = "reporte_horas";
-$query = mysqli_query($con,"SELECT $campos FROM  $tables WHERE estado_jefe= 3 AND fecha_registro BETWEEN '$fecha_inicio' AND '$fecha_fin' ");
+$query = mysqli_query($con," SELECT rh.* FROM reporte_horas rh INNER JOIN detalle_reporte dr ON rh.id_reporte = dr.id_reporte WHERE rh.estado_jefe = 3 AND dr.fecha BETWEEN '$fecha_inicio' AND '$fecha_fin' ");
 ?>
+
 </style>  
 <!doctype html>
 <html lang="en">
@@ -49,6 +49,8 @@ $query = mysqli_query($con,"SELECT $campos FROM  $tables WHERE estado_jefe= 3 AN
                             <th><font size ="3", color ="#2d2d2d">HI</th>
                             <th><font size ="3", color ="#2d2d2d">HF</th>
                             <th><font size ="3", color ="#2d2d2d">FECHA</th>
+                            <th><font size ="3", color ="#2d2d2d">CENTRO DE COSTO</th>
+                            <th><font size ="3", color ="#2d2d2d">DESCRIPCION</th>
                         </tr>
                     </thead>
                     <tbody>            
@@ -56,8 +58,14 @@ $query = mysqli_query($con,"SELECT $campos FROM  $tables WHERE estado_jefe= 3 AN
                         while($row=mysqli_fetch_array($query)){
                             $ids =$row['id_reporte'];
                             $doc =$row['documento'];
-                            $query2 = mysqli_query($con,"SELECT * FROM `detalle_reporte` WHERE `id_reporte` ='$ids'");
+                            $query_cc = mysqli_query($con,"SELECT proyecto FROM c_costos WHERE id_proyecto = '".$row['proyecto']."'");
+                            $row_cc = mysqli_fetch_assoc($query_cc);
+                            $centro_costo = isset($row_cc['proyecto']) ? $row_cc['proyecto']: 'N/A';
+                            $query2 = mysqli_query($con,"SELECT *FROM detalle_reporte WHERE id_reporte ='$ids'AND fecha BETWEEN '$fecha_inicio' AND '$fecha_fin' ORDER BY fecha ASC");
+                            
                             while ($row2 = mysqli_fetch_assoc($query2)) {
+                                $actividad_desarrollada = isset($row2['actividad'])
+                                ? $row2['actividad']: 'Sin descripción';
                                 $codigo_concepto = $row2['codigo_concepto']; 
                                 $valor_horas = 0;
                                 $hora_i = '00:00:00';
@@ -109,7 +117,9 @@ $query = mysqli_query($con,"SELECT $campos FROM  $tables WHERE estado_jefe= 3 AN
                                     <td><font size ="3", color ="black"><?php echo $ids;?></td>
                                     <td><font size ="3", color ="black"><?php echo $hora_i;?></td>                                                 
                                     <td><font size ="3", color ="black"><?php echo $hora_f;?></td>                                                 
-                                    <td><font size ="3", color ="black"><?php echo $row2['fecha'];?></td>                                                 
+                                    <td><font size ="3", color ="black"><?php echo $row2['fecha'];?></td>
+                                    <td><font size ="3", color ="black"><?php echo $centro_costo; ?></td>
+                                    <td><font size ="3", color ="black"><?php echo $actividad_desarrollada; ?></td>                                             
                                 </tr>
                                 <?php 
                             }
@@ -121,6 +131,8 @@ $query = mysqli_query($con,"SELECT $campos FROM  $tables WHERE estado_jefe= 3 AN
                     </tbody>
                     <tfoot>
                         <tr>
+                            <th>Start date</th>
+                            <th>Start date</th>
                             <th>Start date</th>
                             <th>Start date</th>
                             <th>Start date</th>
