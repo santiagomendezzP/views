@@ -58,33 +58,34 @@
                                         <?php
                                         if(isset($_SESSION['reporte'])){
                                             foreach($_SESSION['reporte'] as $indice => $arreglo){
-                                        ?>
-                                        <tr>
+                                                ?>
+                                                <tr>
 
-                                        <td><?php echo $arreglo['fecha']; ?></td>
-                                        <td><?php echo $arreglo['dia']; ?></td>
-                                        <td><?php echo $arreglo['hora']; ?></td>
-                                        <td><?php echo $arreglo['almuerzo']; ?></td>
-                                        <td><?php echo $arreglo['hora_sal']; ?></td>
-                                        <td><?php echo $arreglo['horas_dia']; ?></td>
+                                                <td><?php echo $arreglo['fecha']; ?></td>
+                                                <td><?php echo $arreglo['dia']; ?></td>
+                                                <td><?php echo $arreglo['hora']; ?></td>
+                                                <td><?php echo $arreglo['almuerzo']; ?></td>
+                                                <td><?php echo $arreglo['hora_sal']; ?></td>
+                                                <td><?php echo $arreglo['horas_dia']; ?></td>
 
-                                        <td><?php echo $arreglo['hora_inicio_he']; ?></td>
-                                        <td><?php echo $arreglo['hora_fin_he']; ?></td>
-                                        <td><?php echo $arreglo['horas_extras']; ?></td>
+                                                <td><?php echo $arreglo['hora_inicio_he']; ?></td>
+                                                <td><?php echo $arreglo['hora_fin_he']; ?></td>
+                                                <td><?php echo $arreglo['horas_extras']; ?></td>
 
-                                        <td><?php echo $arreglo['hora_inicio_rec']; ?></td>
-                                        <td><?php echo $arreglo['hora_fin_rec']; ?></td>
-                                        <td><?php echo $arreglo['horas_recargo']; ?></td>
+                                                <td><?php echo $arreglo['hora_inicio_rec']; ?></td>
+                                                <td><?php echo $arreglo['hora_fin_rec']; ?></td>
+                                                <td><?php echo $arreglo['horas_recargo']; ?></td>
 
-                                        <td><?php echo $arreglo['act']; ?></td>
-                                        <td><?php echo $arreglo['concepto']; ?></td>
+                                                <td><?php echo $arreglo['act']; ?></td>
+                                                <td><?php echo $arreglo['concepto']; ?></td>
 
-                                        <td>
-                                            <?php echo $arreglo['edit']; ?>
-                                        </td>
+                                                <td>
+                                                    <?php echo $arreglo['edit']; ?>
+                                                </td>
 
-                                        </tr>
-                                        <?php}
+                                                </tr>
+                                                <?php
+                                            }
                                         }
                                         ?>
                                         </tbody>
@@ -271,9 +272,7 @@
                             var este = this;
                             $('input',this.footer()).on('keyup change',function(){
                                 if(este.search() !== this.value){
-                                    este
-                                        .search(this.value)
-                                        .draw();
+                                    este.search(this.value).draw();
                                 }               
                             });     
                         }); 
@@ -291,5 +290,5 @@
             </body>
         </html>
         <?php
-    }
+    }  
 ?>

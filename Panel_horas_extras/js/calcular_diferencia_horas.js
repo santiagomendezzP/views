@@ -73,7 +73,8 @@ function clasificarYFiltrarConcepto() {
 
   var horasExtras = parseFloat($("#horas_extras").val()) || 0;
 
-  if (horasExtras > 2) {
+  
+/*  if (horasExtras > 2) {
 
     Swal.fire({
       target: document.getElementById('ModalHoras'),
@@ -83,11 +84,8 @@ function clasificarYFiltrarConcepto() {
       confirmButtonColor: '#008ccd'
     });
 
-    $("#hora_fin_he").val('');
-    $("#horas_extras").val('');
 
-    return;
-  }
+  } */
 
   
   var esMixto = false;

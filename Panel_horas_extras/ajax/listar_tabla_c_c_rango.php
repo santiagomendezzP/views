@@ -50,7 +50,7 @@ $query = mysqli_query($con," SELECT rh.* FROM reporte_horas rh INNER JOIN detall
                             <th><font size ="3", color ="#2d2d2d">HF</th>
                             <th><font size ="3", color ="#2d2d2d">FECHA</th>
                             <th><font size ="3", color ="#2d2d2d">CENTRO DE COSTO</th>
-                            <th><font size ="3", color ="#2d2d2d">DESCRIPCION</th>
+                            <th><font size ="3", color ="#2d2d2d">DESCRIPCIÓN</th>
                         </tr>
                     </thead>
                     <tbody>            
@@ -119,7 +119,7 @@ $query = mysqli_query($con," SELECT rh.* FROM reporte_horas rh INNER JOIN detall
                                     <td><font size ="3", color ="black"><?php echo $hora_f;?></td>                                                 
                                     <td><font size ="3", color ="black"><?php echo $row2['fecha'];?></td>
                                     <td><font size ="3", color ="black"><?php echo $centro_costo; ?></td>
-                                    <td><font size ="3", color ="black"><?php echo $actividad_desarrollada; ?></td>                                             
+                                    <td><font size ="3", color ="black"><textarea rows="2" cols="40" disabled><?php echo $actividad_desarrollada; ?></textarea></td>                                             
                                 </tr>
                                 <?php 
                             }

@@ -60,7 +60,6 @@
           <div id="div_horas_extras" style="display: none;">
             <h4 style="padding: 13px; color: black; text-align: center;">HORAS EXTRAS</h4>
             <small style="display:block; text-align:center; color:#6c757d; font-size:11p; margin-bottom:12px;">
-              Extras nocturnas: desde las 7:01 p.m.
             </small>
             <div class="row">
               <div class="col-md-6">
@@ -78,8 +77,7 @@
             </div>
               <div class="form-group" id="div_almuerzo_he" style="display: none;">
               <label for="almuerzo_he" class="col-form-label">TIEMPO EN MINUTOS DE ALMUERZO HORAS EXTRAS:</label>
-              <select name="almuerzo_he" id="almuerzo_he" class="form-control calc">
-                <option value="0">0 minutos</option>
+              <select name="almuerzo_he" id="almuerzo_he" class="form-control calc "required>
                 <option value="30">30 minutos</option>
                 <option value="60">60 minutos</option>
               </select>
@@ -369,22 +367,29 @@ function hCheck(nameSelect)
   }
 }
  
-$('#ModalHoras').ready(function(){
- 
+$('#ModalHoras').ready(function () {
+
+    $('#agregar').click(function (e) {
+
         let formulario = $(this).closest('form')[0];
-        if(formulario.checkValidity())
-  $('#agregar').click(function(){
-    Swal.fire({
-        target: document.getElementById('ModalHoras'),
-        position: 'center',
-        icon: 'success',
-        title: 'Agregado correctamente',
-        showConfirmButton: false,
-        timer: 1800
+
+        // Si el formulario NO es válido, dejar que el navegador
+        // muestre los mensajes de validación y NO mostrar el Swal
+        if (!formulario.checkValidity()) {
+            return;
+        }
+
+        Swal.fire({
+            target: document.getElementById('ModalHoras'),
+            position: 'center',
+            icon: 'success',
+            title: 'Agregado correctamente',
+            showConfirmButton: false,
+            timer: 1800
+        });
     });
-  });
+
 });
- 
 $.ajax({
         method: "POST",
         url: "controller/controlador_reporte_horas.php",
