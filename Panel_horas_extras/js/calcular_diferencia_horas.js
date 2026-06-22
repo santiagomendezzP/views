@@ -55,7 +55,6 @@ function selector() {
 $(".calc").change(selector)
 
 
-
 function clasificarYFiltrarConcepto() {
   var inicio = $("#hora_inicio_he").val();
   var fin = $("#hora_fin_he").val();
@@ -93,11 +92,9 @@ function clasificarYFiltrarConcepto() {
   
   var esMixto = false;
 
-
   if (ini >= 600 && ini < 1900 && end > 1900) {
     esMixto = true;
   }
-
   if (ini < 600 && end > 600 && end < 1900) {
     esMixto = true;
   }

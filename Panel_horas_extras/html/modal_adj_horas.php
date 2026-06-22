@@ -439,53 +439,10 @@ $.ajax({
             // }
         },
   });
-    $("#hora_inicio_he, #hora_fin_he").change(function(){
-
-    let inicio = $("#hora_inicio_he").val();
-    let fin = $("#hora_fin_he").val();
-
-    if(inicio == '' || fin == ''){
-        return;
-    }
-
-    if(inicio >= '06:00' && fin <= '19:00'){
-
-        $("button[name='agregar']").prop('disabled', false);
-
-        $("#concepto_horas_extras option").hide();
-        $("#concepto_horas_extras option[value='']").show();
-        $("#concepto_horas_extras option[value='9']").show();
-        $("#concepto_horas_extras option[value='205']").show();
-        $("#concepto_horas_extras").val('');
-
-    }
-    else if(inicio > '19:00' || fin < '06:00'){
-
-        $("button[name='agregar']").prop('disabled', false);
-
-        $("#concepto_horas_extras option").hide();
-        $("#concepto_horas_extras option[value='']").show();
-        $("#concepto_horas_extras option[value='100']").show();
-        $("#concepto_horas_extras option[value='201']").show();
-        $("#concepto_horas_extras").val('');
-
-    }
-    else{
-
-        $("button[name='agregar']").prop('disabled', true);
-
-        $("#concepto_horas_extras option").hide();
-        $("#concepto_horas_extras option[value='']").show();
-        $("#concepto_horas_extras").val('');
-
-    }
-
-});
+    
   $$("#hora_inicio_he, #hora_fin_he").change(function(){
-
     $("button[name='agregar']").prop('disabled', false);
-
-});
+  });
 </script>
  
  
