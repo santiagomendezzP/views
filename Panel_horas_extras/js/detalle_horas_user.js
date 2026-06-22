@@ -19,6 +19,9 @@ $('#horas_diaM').val(horaDia)
 var horaEx = button.data('hora_extra') 
 $('#horas_extrasM').val(horaEx)
 
+var almuerzo_he = button.data('almuerzo_he')
+$('#almuerzo_he').val(almuerzo_he)
+
 var horaRec = button.data('hora_recargo') 
 $('#horas_recargoM').val(horaRec)
 
