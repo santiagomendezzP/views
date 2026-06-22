@@ -571,5 +571,117 @@
         },
       });
     </script>
+    <script>
+$(document).ready(function() {
+    
+
+    $('.calc').on('change input', function() {
+        calcularTodo();
+    });
+
+    function calcularTodo() {
+        var hEntrada = $('#hora').val();
+        var hSalida = $('#hora_sal').val();
+        var almTurno = parseInt($('#almuerzo').val()) || 0;
+
+        if (hEntrada && hSalida) {
+            var ent = new Date("2026-01-01 " + hEntrada);
+            var sal = new Date("2026-01-01 " + hSalida);
+            if (sal < ent) sal.setDate(sal.getDate() + 1);
+            
+            var minTurno = Math.floor((sal - ent) / 1000 / 60) - almTurno;
+            if (minTurno < 0) minTurno = 0;
+            
+            $('#horas_dia').val(Number((minTurno / 60).toFixed(2)).toString());
+        }
+
+        var hInicioHE = $('#hora_inicio_he').val();
+        var hFinHE = $('#hora_fin_he').val();
+
+        if (hInicioHE && hFinHE) {
+            var iniHE = new Date("2026-01-01 " + hInicioHE);
+            var finHE = new Date("2026-01-01 " + hFinHE);
+            if (finHE < iniHE) finHE.setDate(finHE.getDate() + 1);
+            
+            var minBrutosHE = Math.floor((finHE - iniHE) / 1000 / 60);
+            var horasBrutasHE = minBrutosHE / 60;
+
+            if (horasBrutasHE > 5) {
+                $('#div_almuerzo_he').show();
+                $('#almuerzo_he').prop('required', true);
+            } else {
+                $('#div_almuerzo_he').hide();
+                $('#almuerzo_he').prop('required', false);
+                $('#almuerzo_he').val('0');
+            }
+
+            var almHE = parseInt($('#almuerzo_he').val()) || 0;
+            var minEfectivosHE = minBrutosHE - almHE;
+            if (minEfectivosHE < 0) minEfectivosHE = 0;
+
+            $('#horas_extras').val(Number((minEfectivosHE / 60).toFixed(2)).toString());
+        }
+    }
+
+    $('#agregar').click(function(e){
+        if ($('#div_almuerzo_he').is(':visible') && $('#almuerzo_he').val() == '0') {
+            e.preventDefault(); 
+            Swal.fire({
+                target: document.getElementById('ModalHoras'),
+                icon: 'error',
+                title: 'Campo Obligatorio',
+                text: 'Las horas extras superan las 5 horas. Debe seleccionar un tiempo de almuerzo.'
+            });
+            return false;
+        }
+
+        Swal.fire({
+            target: document.getElementById('ModalHoras'),
+            position: 'center',
+            icon: 'success',
+            title: 'Agregado correctamente',
+            showConfirmButton: false,
+            timer: 1800
+        });
+    });
+
+    $.ajax({
+        method: "POST",
+        url: "controller/controlador_reporte_horas.php",
+        data: { peticion: "datos_horas_reportadas" },
+        success: function (datos) {
+            var o = JSON.parse(datos);
+            var horas_extras = o[0]['horas_extras'];
+            if (horas_extras == null) {
+                horas_extras = 0;
+            }
+            if (horas_extras >= 48) {
+                $("#div_horas_recargo_habilitado").css("display","block");
+                $("#div_horas_extras_recargo").css("display","none");
+            } else if( horas_extras < 48){
+                $("#div_horas_extras_recargo").css("display","block");
+                $("#div_horas_recargo_habilitado").css("display","none");
+            }
+        },
+    });
+});
+
+
+function hCheck(nameSelect) {
+    if(nameSelect){
+        var horasExtrasValue = document.getElementById("horasExtras").value;
+        if(horasExtrasValue == nameSelect.value){
+            document.getElementById("div_horas_extras").style.display = "block";
+            document.getElementById("div_horas_recargo").style.display = "none";
+        } else {
+            document.getElementById("div_horas_extras").style.display = "none";
+            document.getElementById("div_horas_recargo").style.display = "block";
+        }
+    } else {
+        document.getElementById("div_horas_recargo").style.display = "none";
+        document.getElementById("div_horas_extras").style.display = "none";
+    }
+}
+</script>
   </body>
 </html>

@@ -59,6 +59,9 @@
           </div>
           <div id="div_horas_extras" style="display: none;">
             <h4 style="padding: 13px; color: black; text-align: center;">HORAS EXTRAS</h4>
+            <small style="display:block; text-align:center; color:#6c757d; font-size:11p; margin-bottom:12px;">
+              Extras nocturnas: desde las 7:01 p.m.
+            </small>
             <div class="row">
               <div class="col-md-6">
                 <label for="recipient-name" class="col-form-label">HORA INICIAL HORAS EXTRAS:</label>
@@ -270,7 +273,7 @@
     $concepto = $_REQUEST['concepto_horas_extras'] != ''?$_REQUEST['concepto_horas_extras']:$_REQUEST['concepto_horas_recargo'];
  
     $con=$_SESSION['contador'];
-    $arr = "$fecha||$dia||$horaE||$almuerzo||$horaS||$horaDia||$horaInicio_he||$horaFin_he||$horaEx||$horaInicio_rec||$horaFin_rec||$horaRec||$actividad||$con||$concepto";
+    $arr = "$fecha||$dia||$horaE||$almuerzo||$horaS||$horaDia||$horaInicio_he||$horaFin_he||$horaEx||$almuerzo_he||$horaInicio_rec||$horaFin_rec||$horaRec||$actividad||$con||$concepto";
     $editar="
     <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#ModalModifi'
       data-fecha='$fecha'
@@ -279,6 +282,7 @@
       data-hora_salida='$horaS'
       data-horas_dia='$horaDia'
       data-hora_extra='$horaEx'
+      data-almuerzo_he='$almuerzo_he'
       data-hora_recargo='$horaRec'
       data-actividad='$actividad'
       data-cont='$con'
@@ -435,11 +439,10 @@ $.ajax({
             // }
         },
   });
-    $$("#hora_inicio_he, #hora_fin_he").change(function(){
-
+    
+  $$("#hora_inicio_he, #hora_fin_he").change(function(){
     $("button[name='agregar']").prop('disabled', false);
-
-});
+  });
 </script>
  
  

@@ -45,6 +45,7 @@
                                             <th><font size ="2", color ="#2d2d2d">HORA INICIAL HORAS EXTRAS</th>
                                             <th><font size ="2", color ="#2d2d2d">HORA FINAL HORAS EXTRAS</th>
                                             <th><font size ="2", color ="#2d2d2d">TOTAL HORAS EXTRAS</th>
+                                            <th><font size ="2", color ="#2d2d2d">TIEMPO DE ALMUERZO HORAS EXTRAS</th>
                                             <th><font size ="2", color ="#2d2d2d">HORA INICIAL RECARGO</th>
                                             <th><font size ="2", color ="#2d2d2d">HORA FINAL RECARGO</th>
                                             <th><font size ="2", color ="#2d2d2d">TOTAL HORAS RECARGO</th>
@@ -56,23 +57,40 @@
                                     <tbody>
                                         <?php
                                         if(isset($_SESSION['reporte'])){
-                                            foreach($_SESSION['reporte'] as $indice => $arreglo){?>
-                                                <tr>
-                                                    <?php 
-                                                    foreach($arreglo as $key => $value){    
-                                                        ?>            
-                                                        <td><font size ="3", color ="black"><?php echo $value;?></td>    
-                                                        <?php 
-                                                    }
-                                                    ?>
-                                                </tr>
-                                                <?php 
-                                            }
+                                            foreach($_SESSION['reporte'] as $indice => $arreglo){
+                                        ?>
+                                        <tr>
+
+                                        <td><?php echo $arreglo['fecha']; ?></td>
+                                        <td><?php echo $arreglo['dia']; ?></td>
+                                        <td><?php echo $arreglo['hora']; ?></td>
+                                        <td><?php echo $arreglo['almuerzo']; ?></td>
+                                        <td><?php echo $arreglo['hora_sal']; ?></td>
+                                        <td><?php echo $arreglo['horas_dia']; ?></td>
+
+                                        <td><?php echo $arreglo['hora_inicio_he']; ?></td>
+                                        <td><?php echo $arreglo['hora_fin_he']; ?></td>
+                                        <td><?php echo $arreglo['horas_extras']; ?></td>
+
+                                        <td><?php echo $arreglo['hora_inicio_rec']; ?></td>
+                                        <td><?php echo $arreglo['hora_fin_rec']; ?></td>
+                                        <td><?php echo $arreglo['horas_recargo']; ?></td>
+
+                                        <td><?php echo $arreglo['act']; ?></td>
+                                        <td><?php echo $arreglo['concepto']; ?></td>
+
+                                        <td>
+                                            <?php echo $arreglo['edit']; ?>
+                                        </td>
+
+                                        </tr>
+                                        <?php}
                                         }
-                                        ?>                                            
-                                    </tbody>
+                                        ?>
+                                        </tbody>
                                     <tfoot>
                                         <tr>
+                                            <th>Start date</th>
                                             <th>Start date</th>
                                             <th>Start date</th>
                                             <th>Start date</th>
