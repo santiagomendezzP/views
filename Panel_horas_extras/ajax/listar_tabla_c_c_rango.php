@@ -9,7 +9,7 @@ $fecha_fin = "$año-$mes-31";
 
 $campos = "*";
 $tables = "reporte_horas";
-$query = mysqli_query($con," SELECT rh.* FROM reporte_horas rh INNER JOIN detalle_reporte dr ON rh.id_reporte = dr.id_reporte WHERE rh.estado_jefe = 3 AND dr.fecha BETWEEN '$fecha_inicio' AND '$fecha_fin' ");
+$query = mysqli_query($con,"SELECT $campos FROM  $tables WHERE estado_jefe= 3 AND fecha_registro BETWEEN '$fecha_inicio' AND '$fecha_fin' ");
 ?>
 
 </style>  
