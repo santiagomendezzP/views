@@ -32,7 +32,7 @@
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">TIEMPO EN MINUTOS DE ALMUERZO O CENA:</label>
-            <select name="almuerzo" id="almuerzo" class="form-control">
+             <select name="almuerzo" id="almuerzo" class="form-control calc">
               <option value="0">0 minutos</option>
               <option value="30">30 minutos</option>
               <option value="60">60 minutos</option>
@@ -72,6 +72,14 @@
             <div class="form-group">
               <label for="recipient-name" class="col-form-label">TOTAL HORAS EXTRAS:</label>
               <input type="text"  class="form-control" id="horas_extras" name="horas_extras"  readonly>
+            </div>
+              <div class="form-group" id="div_almuerzo_he" style="display: none;">
+              <label for="almuerzo_he" class="col-form-label">TIEMPO EN MINUTOS DE ALMUERZO HORAS EXTRAS:</label>
+              <select name="almuerzo_he" id="almuerzo_he" class="form-control calc">
+                <option value="0">0 minutos</option>
+                <option value="30">30 minutos</option>
+                <option value="60">60 minutos</option>
+              </select>
             </div>
             <div class="form-group">
               <label for="recipient-name" class="col-form-label">CONCEPTO HORAS:</label>
@@ -125,7 +133,7 @@
   </div>
 </div>
 <style>
-
+ 
 #ModalHoras .modal-dialog{
    max-width: 800px;
 }
@@ -135,7 +143,7 @@
    overflow: hidden;
    box-shadow: 0 12px 35px rgba(0,0,0,.18);
 }
-
+ 
 #ModalHoras .modal-header{
    background: linear-gradient(135deg,#008ccd,#006ea3);
    border-bottom: none;
@@ -151,20 +159,20 @@
    color: #fff;
    opacity: 1;
 }
-
+ 
 #ModalHoras .modal-body{
    background: #f8fafc;
    padding: 25px;
    max-height: 70vh;
    overflow-y: auto;
 }
-
+ 
 #ModalHoras label{
    color: #334155;
    font-weight: 600;
    margin-bottom: 6px;
 }
-
+ 
 #ModalHoras .form-control{
    border: 1px solid #dbe2ea;
    border-radius: 10px;
@@ -178,7 +186,7 @@
 #ModalHoras textarea.form-control{
    min-height: 110px;
 }
-
+ 
 #ModalHoras h4{
    background: #008ccd;
    color: white !important;
@@ -189,12 +197,12 @@
    font-weight: 600;
    text-align: center;
 }
-
+ 
 #ModalHoras .modal-footer{
    border-top: 1px solid #e5e7eb;
    padding: 18px 25px;
 }
-
+ 
 #ModalHoras .btn-primary{
    background: #ff8d10;
    border-color: #ff8d10;
@@ -206,7 +214,7 @@
    background: #e57e08;
    border-color: #e57e08;
 }
-
+ 
 #ModalHoras .btn-secondary{
    background: #64748b;
    border-color: #64748b;
@@ -218,24 +226,24 @@
    background: #475569;
    border-color: #475569;
 }
-
+ 
 #ModalHoras select.form-control{
    cursor: pointer;
 }
-
+ 
 #ModalHoras .form-group{
    margin-bottom: 1rem;
 }
-
+ 
 #ModalHoras .modal-body::-webkit-scrollbar{
    width: 8px;
 }
-
+ 
 #ModalHoras .modal-body::-webkit-scrollbar-thumb{
    background: #008ccd;
    border-radius: 20px;
 }
-
+ 
 #ModalHoras .modal-body::-webkit-scrollbar-track{
    background: #eef2f7;
 }
@@ -245,7 +253,7 @@
     $_SESSION['contador']=1;
   }
   if(isset($_REQUEST['agregar'])){
-    $fecha=$_REQUEST['fecha']; 
+    $fecha=$_REQUEST['fecha'];
     $dia=$_REQUEST['dia'];
     $horaE=$_REQUEST['hora'];
     $almuerzo=$_REQUEST['almuerzo'];
@@ -254,23 +262,24 @@
     $horaInicio_he=$_REQUEST['hora_inicio_he'];
     $horaFin_he=$_REQUEST['hora_fin_he'];
     $horaEx=$_REQUEST['horas_extras'];
+    $almuerzo_he=$_REQUEST['almuerzo_he'];
     $horaInicio_rec=$_REQUEST['hora_inicio_rec'];
     $horaFin_rec=$_REQUEST['hora_fin_rec'];
     $horaRec=$_REQUEST['horas_recargo'];
     $actividad=$_REQUEST['activi'];
     $concepto = $_REQUEST['concepto_horas_extras'] != ''?$_REQUEST['concepto_horas_extras']:$_REQUEST['concepto_horas_recargo'];
-
+ 
     $con=$_SESSION['contador'];
     $arr = "$fecha||$dia||$horaE||$almuerzo||$horaS||$horaDia||$horaInicio_he||$horaFin_he||$horaEx||$horaInicio_rec||$horaFin_rec||$horaRec||$actividad||$con||$concepto";
     $editar="
     <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#ModalModifi'
-      data-fecha='$fecha' 
-      data-dia='$dia' 
+      data-fecha='$fecha'
+      data-dia='$dia'
       data-hora_extrada='$horaE'
       data-hora_salida='$horaS'
       data-horas_dia='$horaDia'
-      data-hora_extra='$horaEx' 
-      data-hora_recargo='$horaRec' 
+      data-hora_extra='$horaEx'
+      data-hora_recargo='$horaRec'
       data-actividad='$actividad'
       data-cont='$con'
       data-array='$arr'>
@@ -283,7 +292,7 @@
       <path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z'/>
       <path fill-rule='evenodd' d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z'/></svg>
     </a>";
-
+ 
     $_SESSION['reporte'][$_SESSION['contador']]['fecha']=$fecha;
     $_SESSION['reporte'][$_SESSION['contador']]['dia']=$dia;
     $_SESSION['reporte'][$_SESSION['contador']]['hora']=$horaE;
@@ -293,6 +302,8 @@
     $_SESSION['reporte'][$_SESSION['contador']]['hora_inicio_he']=$horaInicio_he;
     $_SESSION['reporte'][$_SESSION['contador']]['hora_fin_he']=$horaFin_he;
     $_SESSION['reporte'][$_SESSION['contador']]['horas_extras']=$horaEx;
+    $_SESSION['reporte'][$_SESSION['contador']]['almuerzo_he']=$almuerzo_he;
+ 
     $_SESSION['reporte'][$_SESSION['contador']]['hora_inicio_rec']=$horaInicio_rec;
     $_SESSION['reporte'][$_SESSION['contador']]['hora_fin_rec']=$horaFin_rec;
     $_SESSION['reporte'][$_SESSION['contador']]['horas_recargo']=$horaRec;
@@ -300,7 +311,7 @@
     $_SESSION['reporte'][$_SESSION['contador']]['concepto']=$concepto;
     $_SESSION['reporte'][$_SESSION['contador']]['edit']=$editar;
     $_SESSION['contador']=$_SESSION['contador']+1;
-
+ 
     $_SESSION['consolidado']['horaExDiu'] =   isset($_SESSION['consolidado']['horaExDiu'])?$_SESSION['consolidado']['horaExDiu']:0;
     $_SESSION['consolidado']['horaExNoc'] =     isset($_SESSION['consolidado']['horaExNoc'])?$_SESSION['consolidado']['horaExNoc']:0;
     $_SESSION['consolidado']['horaExDiu_dom'] = isset($_SESSION['consolidado']['horaExDiu_dom'])?$_SESSION['consolidado']['horaExDiu_dom']:0;
@@ -321,7 +332,7 @@
       case 201:
           $_SESSION['consolidado']['horaExNoc_dom'] = $_SESSION['consolidado']['horaExNoc_dom']+$horaEx;
           break;
-    
+   
       case 5055:
           $_SESSION['consolidado']['recargosNoc'] =   $_SESSION['consolidado']['recargosNoc']+$horaRec;
           break;
@@ -331,11 +342,11 @@
       case 5879:
           $_SESSION['consolidado']['recargosDiu_dom'] = $_SESSION['consolidado']['recargosDiu_dom']+$horaRec;
           break;
-    }   
+    }  
     echo "<script type='text/javascript'>window.location='index.php';</script>";
   }
 ?>
-
+ 
 <script>
 function hCheck(nameSelect)
 {
@@ -353,9 +364,9 @@ function hCheck(nameSelect)
       document.getElementById("div_horas_extras").style.display = "none";
   }
 }
-
+ 
 $('#ModalHoras').ready(function(){
-
+ 
         let formulario = $(this).closest('form')[0];
         if(formulario.checkValidity())
   $('#agregar').click(function(){
@@ -369,7 +380,7 @@ $('#ModalHoras').ready(function(){
     });
   });
 });
-
+ 
 $.ajax({
         method: "POST",
         url: "controller/controlador_reporte_horas.php",
@@ -388,14 +399,14 @@ $.ajax({
           //   }else if( horas_extras < 48){
           //    $("#div_horas_extras_recargo").css("display","block");
           //    $("#div_horas_recargo_habilitado").css("display","none");
-              
+             
           //   }
           // } else {
-            
+           
           // }
-
+ 
             // if(o[0]['documento'] == '1023970683' || o[0]['documento'] == '1000991563' || o[0]['documento'] == '1013598046') {
-              
+             
               var horas_extras = o[0]['horas_extras'];
               if (horas_extras == null) {
                 horas_extras = 0;
@@ -406,7 +417,7 @@ $.ajax({
               }else if( horas_extras < 48){
               $("#div_horas_extras_recargo").css("display","block");
               $("#div_horas_recargo_habilitado").css("display","none");
-                
+               
               }
             // } else {
             //   var horas_extras = o[0]['horas_extras'];
@@ -419,55 +430,16 @@ $.ajax({
             //   }else if( horas_extras < 48){
             //   $("#div_horas_extras_recargo").css("display","block");
             //   $("#div_horas_recargo_habilitado").css("display","none");
-                
+               
             //   }
             // }
         },
   });
-    $("#hora_inicio_he, #hora_fin_he").change(function(){
-
-    let inicio = $("#hora_inicio_he").val();
-    let fin = $("#hora_fin_he").val();
-
-    if(inicio == '' || fin == ''){
-        return;
-    }
-
-    // DIURNAS
-if(inicio >= '06:00' && fin <= '18:59'){
+    $$("#hora_inicio_he, #hora_fin_he").change(function(){
 
     $("button[name='agregar']").prop('disabled', false);
 
-    $("#concepto_horas_extras option").hide();
-    $("#concepto_horas_extras option[value='9']").show();
-    $("#concepto_horas_extras option[value='205']").show();
-    $("#concepto_horas_extras option[value='']").show();
-    $("#concepto_horas_extras").val('');
-
-}
-// NOCTURNAS
-else if(inicio >= '19:00' || fin <= '05:59'){
-
-    $("button[name='agregar']").prop('disabled', false);
-
-    $("#concepto_horas_extras option").hide();
-    $("#concepto_horas_extras option[value='100']").show();
-    $("#concepto_horas_extras option[value='201']").show();
-    $("#concepto_horas_extras option[value='']").show();
-    $("#concepto_horas_extras").val('');
-
-}
-// MIXTAS
-else{
-
-    alert('Las horas registradas contienen tiempo diurno y nocturno. Debe realizar solicitudes independientes.');
-
-    $("button[name='agregar']").prop('disabled', true);
-
-    $("#concepto_horas_extras option").hide();
-    $("#concepto_horas_extras option[value='']").show();
-    $("#concepto_horas_extras").val('');
-
-}
 });
 </script>
+ 
+ 
