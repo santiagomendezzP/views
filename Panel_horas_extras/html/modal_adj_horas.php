@@ -273,7 +273,7 @@
     $concepto = $_REQUEST['concepto_horas_extras'] != ''?$_REQUEST['concepto_horas_extras']:$_REQUEST['concepto_horas_recargo'];
  
     $con=$_SESSION['contador'];
-    $arr = "$fecha||$dia||$horaE||$almuerzo||$horaS||$horaDia||$horaInicio_he||$horaFin_he||$horaEx||$horaInicio_rec||$horaFin_rec||$horaRec||$actividad||$con||$concepto";
+    $arr = "$fecha||$dia||$horaE||$almuerzo||$horaS||$horaDia||$horaInicio_he||$horaFin_he||$horaEx||$almuerzo_he||$horaInicio_rec||$horaFin_rec||$horaRec||$actividad||$con||$concepto";
     $editar="
     <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#ModalModifi'
       data-fecha='$fecha'
@@ -282,6 +282,7 @@
       data-hora_salida='$horaS'
       data-horas_dia='$horaDia'
       data-hora_extra='$horaEx'
+      data-almuerzo_he='$almuerzo_he'
       data-hora_recargo='$horaRec'
       data-actividad='$actividad'
       data-cont='$con'
