@@ -623,28 +623,26 @@ $(document).ready(function() {
         }
     }
 
-    $('#agregar').click(function(e){
-        if ($('#div_almuerzo_he').is(':visible') && $('#almuerzo_he').val() == '0') {
-            e.preventDefault(); 
-            Swal.fire({
-                target: document.getElementById('ModalHoras'),
-                icon: 'error',
-                title: 'Campo Obligatorio',
-                text: 'Las horas extras superan las 5 horas. Debe seleccionar un tiempo de almuerzo.'
-            });
-            return false;
-        }
+    $('#ModalHoras form').on('submit', function(e) {
+
+    var horasExtras = parseFloat($('#horas_extras').val()) || 0;
+    var almuerzoHE = $('#almuerzo_he').val();
+
+    if (horasExtras > 5 && almuerzoHE == '0') {
+
+        e.preventDefault();
 
         Swal.fire({
             target: document.getElementById('ModalHoras'),
-            position: 'center',
-            icon: 'success',
-            title: 'Agregado correctamente',
-            showConfirmButton: false,
-            timer: 1800
+            icon: 'error',
+            title: 'Campo Obligatorio',
+            text: 'Las horas extras superan las 5 horas. Debe seleccionar un tiempo de almuerzo.'
         });
-    });
 
+        return false;
+    }
+
+});
     $.ajax({
         method: "POST",
         url: "controller/controlador_reporte_horas.php",

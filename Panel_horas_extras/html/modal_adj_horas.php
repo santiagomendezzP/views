@@ -78,6 +78,7 @@
               <div class="form-group" id="div_almuerzo_he" style="display: none;">
               <label for="almuerzo_he" class="col-form-label">TIEMPO EN MINUTOS DE ALMUERZO HORAS EXTRAS:</label>
               <select name="almuerzo_he" id="almuerzo_he" class="form-control calc "required>
+                <option value="0">0 minutos</option>
                 <option value="30">30 minutos</option>
                 <option value="60">60 minutos</option>
               </select>

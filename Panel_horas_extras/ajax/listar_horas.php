@@ -72,6 +72,8 @@
                                                 <td><?php echo $arreglo['hora_fin_he']; ?></td>
                                                 <td><?php echo $arreglo['horas_extras']; ?></td>
 
+                                                <td><?php echo $arreglo['almuerzo_he']; ?></td>
+
                                                 <td><?php echo $arreglo['hora_inicio_rec']; ?></td>
                                                 <td><?php echo $arreglo['hora_fin_rec']; ?></td>
                                                 <td><?php echo $arreglo['horas_recargo']; ?></td>
