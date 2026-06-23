@@ -4,8 +4,8 @@
 		
 		//aca van mis atributos
 		private $host="localhost";
-		private $usuario = 'root';
-		private $password = '';
+		private $usuario = 'desarrollo_delta';
+		private $password = '*Delta2021*';
 		private $bd = 'intranet';
 		
 		public function conexion(){
